@@ -1,11 +1,11 @@
-(ns ifup.handler
+(ns ifup.site
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [clojure.tools.logging :as l]
             [clojure.string :as s]))
 
-(defroutes app-routes
+(defroutes site-routes
   (GET "/" {:keys [remote-addr headers] :as request}
        (let [x-forwarded-for (get headers "x-forwarded-for")]
          (if (empty? x-forwarded-for)
@@ -13,5 +13,5 @@
            (first (s/split x-forwarded-for #",")))))
   (route/not-found "Hello World"))
 
-(def app
-  (wrap-defaults app-routes site-defaults))
+(def site
+  (wrap-defaults site-routes site-defaults))

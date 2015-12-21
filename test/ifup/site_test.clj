@@ -1,14 +1,14 @@
-(ns ifup.handler-test
+(ns ifup.site-test
   (:require [clojure.test :refer :all]
             [ring.mock.request :as mock]
-            [ifup.handler :refer :all]))
+            [ifup.site :refer :all]))
 
 (deftest test-app
   (testing "main route"
-    (let [response (app (mock/request :get "/"))]
+    (let [response (site (mock/request :get "/"))]
       (is (= (:status response) 200))
       (is (= (:body "localhost,")))))
 
   (testing "not-found route"
-    (let [response (app (mock/request :get "/invalid"))]
+    (let [response (site (mock/request :get "/invalid"))]
       (is (= (:status response) 404)))))

@@ -7,7 +7,7 @@
                  [compojure "1.4.0"]
                  [org.clojure/tools.logging "0.3.1"]]
   :plugins [[lein-ring "0.9.7"]]
-  :ring {:handler ifup.handler/app}
+  :ring {:handler ifup.boot/app}
   :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                                   [ring/ring-mock "0.3.0"]]}
              :uberwar {:aot :all}}
